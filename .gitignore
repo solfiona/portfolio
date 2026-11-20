@@ -1,0 +1,72 @@
+# .gitignore
+# Dateien, die nicht ins Repository gehören.
+# Achtung: Bereits committete Dateien werden dadurch nicht entfernt.
+
+# --- Ordner für Originale und Zwischenstände ---
+# Hier dürfen lokal Arbeitsdateien liegen, sie landen nie in Git.
+_originale/
+
+# --- Adobe ---
+*.psd
+*.psb
+*.ai
+*.indd
+*.indb
+*.indl
+*.idml
+*.prproj
+*.aep
+*.xd
+
+# --- Affinity, Sketch, Figma (lokale Dateien) ---
+*.af
+*.afdesign
+*.afphoto
+*.afpub
+*.sketch
+*.fig
+
+# --- Unkomprimierte und Rohbilder ---
+*.tif
+*.tiff
+*.bmp
+*.heic
+*.heif
+*.raw
+*.dng
+*.cr2
+*.cr3
+*.nef
+*.arw
+*.orf
+*.rw2
+
+# --- Rohvideos und Audio-Rohdateien ---
+# MP4 und WebM sind Webformate und bleiben erlaubt.
+*.mov
+*.avi
+*.mkv
+*.mxf
+*.wav
+*.aif
+*.aiff
+
+# --- Archive ---
+*.zip
+*.rar
+*.7z
+
+# --- Betriebssystem ---
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# --- Editor ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# --- Sicherheitshalber, falls doch jemand npm verwendet ---
+node_modules/
+.env
