@@ -1,0 +1,334 @@
+/* Variablen */
+:root {
+  --farbe-hintergrund: #000000;
+  --farbe-rahmen: #00000033;
+  --farbe-verdunkelung: rgb(0 0 0 / 0.86);
+  --wuerfel-groesse: min(25vw, 46vh);
+  --wuerfel-halbe-groesse: min(12.5vw, 23vh);
+  --raster-spalten-offset: 20.952vw;
+  --raster-spaltenbreite: 12.316vw;
+  --raster-spaltenabstand: 2.944vw;
+  --raster-spaltenperiode: 15.26vw;
+  --raster-spaltenflaeche: 58.096vw;
+  --raster-spaltengruppe: 27.576vw;
+  --raster-reihen-offset: 3.67vh;
+  --raster-reihenhoehe: 5.467vh;
+  --raster-reihenperiode: 7.572vh;
+  --wuerfel-rasterbreite: calc(6 * var(--raster-spaltenbreite) + 5 * var(--raster-spaltenabstand));
+  --wuerfel-rasteroffset: calc((100vw - var(--wuerfel-rasterbreite)) / 2);
+}
+
+/* Basis */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Layout */
+.wuerfel-buehne {
+  display: grid;
+  min-height: 100vh;
+  padding: 1rem 0;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--farbe-hintergrund);
+}
+
+/* Komponenten */
+.wuerfel-raster {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  width: var(--wuerfel-rasterbreite);
+  margin: 0;
+  margin-left: var(--wuerfel-rasteroffset);
+  padding: 0;
+  grid-template-columns: repeat(6, minmax(0, var(--raster-spaltenbreite)));
+  column-gap: var(--raster-spaltenabstand);
+  list-style: none;
+}
+
+.wuerfel-szene {
+  display: grid;
+  min-width: 0;
+  grid-column: span 3;
+  aspect-ratio: 1;
+  place-items: center;
+  perspective: 60rem;
+}
+
+.wuerfel {
+  position: relative;
+  display: block;
+  width: var(--wuerfel-groesse);
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  animation: wuerfel-drehen 8s cubic-bezier(0.36, 0, 0.64, 1) infinite;
+}
+
+.wuerfel--ziehen {
+  cursor: grabbing;
+  animation-play-state: paused;
+}
+
+.wuerfel__drehung {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(var(--wuerfel-manuell-x, 0deg)) rotateY(var(--wuerfel-manuell-y, 0deg));
+  transform-style: preserve-3d;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.wuerfel--ziehen .wuerfel__drehung {
+  cursor: grabbing;
+}
+
+.wuerfel--ausrichten .wuerfel__drehung {
+  transition: transform 0.35s ease-out;
+}
+
+.wuerfel__seite {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid var(--farbe-rahmen);
+  backface-visibility: hidden;
+}
+
+.wuerfel__seite--leer {
+  background: #171717;
+}
+
+.wuerfel__seite--vorn {
+  transform: translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__seite--rechts {
+  transform: rotateY(90deg) translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__seite--hinten {
+  transform: rotateY(180deg) translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__seite--links {
+  transform: rotateY(-90deg) translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__seite--oben {
+  transform: rotateX(90deg) translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__seite--unten {
+  transform: rotateX(-90deg) translateZ(var(--wuerfel-halbe-groesse));
+}
+
+.wuerfel__bild,
+.wuerfel__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+.layout-raster {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.layout-raster__spalten {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgb(0 51 255 / 0.1) var(--raster-spaltenbreite),
+    transparent var(--raster-spaltenbreite)
+  );
+  background-repeat: repeat-x;
+  background-size: var(--raster-spaltenperiode) 100%;
+}
+
+.layout-raster__spalten::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--raster-spalten-offset);
+  width: var(--raster-spaltenflaeche);
+  border-right: 1px solid rgb(255 70 48 / 0.85);
+  border-left: 1px solid rgb(255 70 48 / 0.85);
+  background-image: linear-gradient(
+    to right,
+    transparent calc(30.5% - 0.5px),
+    rgb(255 70 48 / 0.85) 30.5%,
+    transparent calc(30.5% + 0.5px),
+    transparent calc(52.5% - 0.5px),
+    rgb(255 70 48 / 0.85) 52.5%,
+    transparent calc(52.5% + 0.5px),
+    transparent calc(74.5% - 0.5px),
+    rgb(255 70 48 / 0.85) 74.5%,
+    transparent calc(74.5% + 0.5px)
+  );
+  content: "";
+}
+
+.layout-raster__reihen {
+  position: absolute;
+  top: var(--raster-reihen-offset);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255 0 0 / 0.1) var(--raster-reihenhoehe),
+    transparent var(--raster-reihenhoehe)
+  );
+  background-repeat: repeat-y;
+  background-size: 100% var(--raster-reihenperiode);
+}
+
+.layout-raster__reihen::after {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--raster-reihenperiode) - 1px),
+    rgb(255 70 48 / 0.85) calc(var(--raster-reihenperiode) - 1px),
+    rgb(255 70 48 / 0.85) var(--raster-reihenperiode)
+  );
+  content: "";
+}
+
+/* Vergrösserte Ansicht */
+.bild-ansicht {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  overflow: visible;
+  border: 0;
+  background: var(--farbe-verdunkelung);
+  color: #ffffff;
+}
+
+.bild-ansicht[hidden] {
+  display: none;
+}
+
+.bild-ansicht__inhalt {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bild-ansicht__schliessen {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: grid;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000000;
+  font: inherit;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bild-ansicht__schliessen:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
+@keyframes wuerfel-drehen {
+  0%,
+  4% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+
+  11% {
+    transform: rotateX(-12deg) rotateY(-82deg);
+  }
+
+  18%,
+  22% {
+    transform: rotateX(0deg) rotateY(-90deg);
+  }
+
+  28% {
+    transform: rotateX(8deg) rotateY(-135deg);
+  }
+
+  34%,
+  38% {
+    transform: rotateX(0deg) rotateY(-180deg);
+  }
+
+  44% {
+    transform: rotateX(-10deg) rotateY(-225deg);
+  }
+
+  51%,
+  55% {
+    transform: rotateX(0deg) rotateY(-270deg);
+  }
+
+  62% {
+    transform: rotateX(-26deg) rotateY(-315deg);
+  }
+
+  68%,
+  72% {
+    transform: rotateX(-90deg) rotateY(-360deg);
+  }
+
+  79% {
+    transform: rotateX(-28deg) rotateY(-400deg);
+  }
+
+  86%,
+  90% {
+    transform: rotateX(90deg) rotateY(-360deg);
+  }
+
+  96% {
+    transform: rotateX(26deg) rotateY(-360deg);
+  }
+
+  100% {
+    transform: rotateX(0deg) rotateY(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wuerfel {
+    animation: none;
+  }
+}

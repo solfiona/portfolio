@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chum au mit! — Fiona Soland</title>
+  <meta name="description" content="Plakat-, Fotografie- und Animationsprojekt Chum au mit! von Fiona Soland." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/projekt.css" />
+  <script>
+    // Inhalt vor dem ersten Bild verstecken, wenn die Seite über einen Würfel geöffnet wurde.
+    if (/[?&](bild|video)=/.test(location.search)) {
+      document.documentElement.classList.add("vom-wuerfel");
+      setTimeout(function () { document.documentElement.classList.remove("vom-wuerfel"); }, 3000);
+    }
+  </script>
+  <script src="../js/projekt.js" defer></script>
+</head>
+<body class="projektseite">
+  <header class="projekt-kopf">
+    <div class="projekt-kopf__links">
+      <a class="projekt-kopf__logo" href="index.html" aria-label="Zurück zu den Würfeln">fiona.soland</a>
+      <p class="projekt-kopf__meta"><span>Plakat</span><span>Fotografie</span><span>Animation</span></p>
+      <h1>Chum au mit!</h1>
+    </div>
+    <nav class="projekt-navigation" aria-label="Projektabschnitte">
+      <a href="#projekt">Projekt</a>
+      <a href="#idee">Idee</a>
+      <a href="#arbeiten">Arbeiten</a>
+    </nav>
+    <nav class="projekt-liste" aria-label="Projekte">
+      <a href="projekt-chum-au-mit.html" aria-current="page">Chum au mit!</a>
+      <a href="projekt-der-london-kassenzettel.html">Der London Kassenzettel</a>
+    </nav>
+  </header>
+
+  <main class="projekt-inhalt">
+    <section id="projekt" class="projekt-abschnitt" aria-label="Projekt">
+      <figure class="projekt-einstieg">
+        <video class="projekt-film" autoplay muted loop playsinline poster="../assets/bilder/wuerfel-motiv-5-poster.jpg">
+          <source src="../assets/videos/wuerfel-motiv-5.mp4" type="video/mp4" />
+        </video>
+      </figure>
+      <img class="projekt-bild projekt-bild--rechts" src="../assets/bilder/wuerfel-motiv-1.jpg" alt="Pixeltypografischer Schriftzug Chum au mit" loading="lazy" />
+      <img class="projekt-bild projekt-bild--links" src="../assets/bilder/wuerfel-motiv-5-poster.jpg" alt="Gelbes Plakat mit dreidimensionaler Typografie Chum au mit" loading="lazy" />
+      <img class="projekt-bild projekt-bild--klein" src="../assets/bilder/wuerfel-motiv-2.jpg" alt="Detail des gelben Chum au mit Plakats mit roten Figuren" loading="lazy" />
+    </section>
+
+    <section id="idee" class="projekt-abschnitt projekt-abschnitt--grau projekt-quer" aria-label="Idee" data-kopf="dunkel">
+      <div class="projekt-quer__buehne">
+        <div class="projekt-quer__band">
+          <p class="projekt-text">Veränderung braucht Protest. Ich lebe in der Schweiz, in einer Demokratie und habe das Recht auf die Strassen zu gehen und meine Meinung laut zu äussern. Mit dem Plakat möchte ich andere dazu ermutigen, dieses Recht zu nutzen. Laut, aktiv und solidarisch zu sein. Das alles braucht Mut. Dieser wird typografisch in meinem Slogan «Chum au mit» gezeigt. Zusammen ist man mutiger. Mit meinem Plakat lade ich den*die Betrachter*in dazu ein, gemeinsam für Gerechtigkeit einzustehen.</p>
+          <img src="../assets/bilder/wuerfel-motiv-4.jpg" alt="Abstrahierte Protestszene in verfremdeten Farben" />
+          <img src="../assets/bilder/wuerfel-motiv-2.jpg" alt="Detail des gelben Chum au mit Plakats mit roten Figuren" />
+          <img src="../assets/bilder/wuerfel-motiv-1.jpg" alt="Pixeltypografischer Schriftzug Chum au mit" />
+        </div>
+      </div>
+    </section>
+
+    <section id="arbeiten" class="projekt-abschnitt" aria-label="Arbeiten">
+      <img class="projekt-bild projekt-bild--breit" src="../assets/bilder/wuerfel-motiv-3.jpg" alt="Rauch auf einer Strasse während eines Protests" loading="lazy" />
+      <img class="projekt-bild projekt-bild--rechts" src="../assets/bilder/wuerfel-motiv-6.jpg" alt="Rotes und gelbes typografisches Plakatmotiv" loading="lazy" />
+      <img class="projekt-bild projekt-bild--klein-links" src="../assets/bilder/wuerfel-motiv-4.jpg" alt="Abstrahierte Protestszene in verfremdeten Farben" loading="lazy" />
+    </section>
+  </main>
+
+  <div class="layout-raster" aria-hidden="true">
+    <div class="layout-raster__spalten"></div>
+    <div class="layout-raster__reihen"></div>
+  </div>
+</body>
+</html>

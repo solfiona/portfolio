@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Der London Kassenzettel — Fiona Soland</title>
+  <meta name="description" content="Buchprojekt Der London Kassenzettel von Fiona Soland." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/projekt.css" />
+  <script>
+    // Inhalt vor dem ersten Bild verstecken, wenn die Seite über einen Würfel geöffnet wurde.
+    if (/[?&](bild|video)=/.test(location.search)) {
+      document.documentElement.classList.add("vom-wuerfel");
+      setTimeout(function () { document.documentElement.classList.remove("vom-wuerfel"); }, 3000);
+    }
+  </script>
+  <script src="../js/projekt.js" defer></script>
+</head>
+<body class="projektseite">
+  <header class="projekt-kopf">
+    <div class="projekt-kopf__links">
+      <a class="projekt-kopf__logo" href="index.html" aria-label="Zurück zu den Würfeln">fiona.soland</a>
+      <p class="projekt-kopf__meta"><span>Buch</span><span>Fotografie</span><span>Zeichnung</span></p>
+      <h1>Der London Kassenzettel</h1>
+    </div>
+    <nav class="projekt-navigation" aria-label="Projektabschnitte">
+      <a href="#projekt">Projekt</a>
+      <a href="#idee">Idee</a>
+      <a href="#arbeiten">Arbeiten</a>
+    </nav>
+    <nav class="projekt-liste" aria-label="Projekte">
+      <a href="projekt-chum-au-mit.html">Chum au mit!</a>
+      <a href="projekt-der-london-kassenzettel.html" aria-current="page">Der London Kassenzettel</a>
+    </nav>
+  </header>
+
+  <main class="projekt-inhalt">
+    <section id="projekt" class="projekt-abschnitt" aria-label="Projekt">
+      <figure class="projekt-einstieg">
+        <img class="projekt-film" src="../assets/bilder/wuerfel-neu-motiv-4.jpg" alt="Gebundenes Buch im Format eines langen Kassenzettels" />
+      </figure>
+      <img class="projekt-bild projekt-bild--rechts" src="../assets/bilder/wuerfel-neu-motiv-1.jpg" alt="Pixeltypografischer Titel Der London Kassenzettel" loading="lazy" />
+      <img class="projekt-bild projekt-bild--links" src="../assets/bilder/wuerfel-neu-motiv-6.jpg" alt="Detail der Drahtbindung mit Text und kleinen Bildern" loading="lazy" />
+      <img class="projekt-bild projekt-bild--klein" src="../assets/bilder/wuerfel-neu-motiv-2.jpg" alt="Dunkle, gestreifte Fotografie mit einem hellen Lichtstreifen" loading="lazy" />
+    </section>
+
+    <section id="idee" class="projekt-abschnitt projekt-abschnitt--grau projekt-quer" aria-label="Idee" data-kopf="dunkel">
+      <div class="projekt-quer__buehne">
+        <div class="projekt-quer__band">
+          <!-- TODO: Projekttext ersetzen -->
+          <p class="projekt-text">Hier steht der Projekttext zu «Der London Kassenzettel». Worum geht es, wie ist das Buch entstanden und was wollte ich damit zeigen?</p>
+          <img src="../assets/bilder/wuerfel-neu-motiv-3.jpg" alt="Doppelseite mit farbigen Kreidezeichnungen" />
+          <img src="../assets/bilder/wuerfel-neu-motiv-5.png" alt="Rote Drucktextur mit hellen Linien" />
+          <img src="../assets/bilder/wuerfel-neu-motiv-2.jpg" alt="Dunkle, gestreifte Fotografie mit einem hellen Lichtstreifen" />
+        </div>
+      </div>
+    </section>
+
+    <section id="arbeiten" class="projekt-abschnitt" aria-label="Arbeiten">
+      <img class="projekt-bild projekt-bild--breit" src="../assets/bilder/wuerfel-neu-motiv-3.jpg" alt="Doppelseite mit farbigen Kreidezeichnungen" loading="lazy" />
+      <img class="projekt-bild projekt-bild--links" src="../assets/bilder/wuerfel-neu-motiv-5.png" alt="Rote Drucktextur mit hellen Linien" loading="lazy" />
+      <img class="projekt-bild projekt-bild--klein" src="../assets/bilder/wuerfel-neu-motiv-1.jpg" alt="Pixeltypografischer Titel Der London Kassenzettel" loading="lazy" />
+    </section>
+  </main>
+
+  <div class="layout-raster" aria-hidden="true">
+    <div class="layout-raster__spalten"></div>
+    <div class="layout-raster__reihen"></div>
+  </div>
+</body>
+</html>

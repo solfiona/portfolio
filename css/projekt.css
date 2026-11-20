@@ -1,0 +1,318 @@
+/* Projektseiten
+   Raster: dieselben 6 Spalten wie bei den Würfeln (Variablen aus style.css).
+   Spalte 1 = Projektangaben, Spalten 2–5 = Bilder, Spalte 6 = Projektliste. */
+
+.projektseite {
+  --kopf-farbe: #fff;
+  --abstand-reihe: clamp(5rem, 18vh, 12rem);
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.projektseite.kopf-dunkel {
+  --kopf-farbe: #000;
+}
+
+/* Übergang vom Würfel: bis js/projekt.js übernimmt, nichts zeigen */
+.vom-wuerfel .projekt-kopf,
+.vom-wuerfel .projekt-inhalt,
+.vom-wuerfel .layout-raster {
+  opacity: 0;
+}
+
+/* ---------- Kopfzeile (fix) ---------- */
+
+.projekt-kopf {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  display: grid;
+  width: var(--wuerfel-rasterbreite);
+  margin-left: var(--wuerfel-rasteroffset);
+  padding-top: 1.25rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: var(--raster-spaltenabstand);
+  align-items: start;
+  color: var(--kopf-farbe);
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.projekt-kopf a {
+  color: inherit;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.projekt-kopf__links {
+  grid-column: 1;
+}
+
+.projekt-kopf__logo {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.projekt-kopf__meta {
+  margin: 2.6rem 0 0.3rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.projekt-kopf__meta span + span {
+  margin-left: 0.9em;
+}
+
+.projekt-kopf h1 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Abschnitte (Projekt · Idee · Arbeiten): nur der aktuelle ist scharf */
+.projekt-navigation {
+  display: flex;
+  grid-column: 2 / span 4;
+  gap: 1.2em;
+  font-weight: 700;
+}
+
+.projekt-liste {
+  display: grid;
+  grid-column: 6;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.projekt-navigation a,
+.projekt-liste a {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+}
+
+.projekt-navigation a.ist-aktiv,
+.projekt-liste a[aria-current="page"],
+.projekt-navigation a:hover,
+.projekt-liste a:hover,
+.projekt-navigation a:focus-visible,
+.projekt-liste a:focus-visible {
+  filter: blur(0);
+}
+
+/* ---------- Inhalt ---------- */
+
+.projekt-inhalt {
+  position: relative;
+  z-index: 1;
+}
+
+.projekt-abschnitt {
+  display: grid;
+  padding: var(--abstand-reihe) var(--wuerfel-rasteroffset);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: var(--raster-spaltenabstand);
+  row-gap: var(--abstand-reihe);
+  align-items: start;
+  background: #000;
+}
+
+.projekt-abschnitt:first-child {
+  padding-top: clamp(6.5rem, 12.5vh, 8rem);
+}
+
+.projekt-abschnitt--grau {
+  background: #f2f2f2;
+  color: #000;
+}
+
+/* Erstes Bild: Spalten 2–5 (Masse müssen zu js/main.js und js/projekt.js passen) */
+.projekt-einstieg {
+  grid-column: 2 / span 4;
+  margin: 0;
+}
+
+.projekt-film {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.48;
+  object-fit: cover;
+}
+
+/* Bilder abwechselnd links und rechts, wie versetzt gelegt */
+.projekt-bild {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.projekt-bild--links {
+  grid-column: 2 / span 3;
+}
+
+.projekt-bild--rechts {
+  grid-column: 3 / span 3;
+}
+
+.projekt-bild--klein {
+  grid-column: 5 / span 1;
+}
+
+.projekt-bild--klein-links {
+  grid-column: 2 / span 1;
+}
+
+.projekt-bild--breit {
+  grid-column: 2 / span 4;
+}
+
+/* Ein Paar (grosses + kleines Bild) teilt sich eine Reihe */
+.projekt-paar {
+  display: contents;
+}
+
+.projekt-text {
+  grid-column: 2 / span 3;
+  margin: 0;
+  font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+  line-height: 1.3;
+}
+
+/* ---------- Quer-Abschnitt: beim Runterscrollen wandert alles seitwärts ---------- */
+
+.projekt-quer {
+  display: block;
+  padding: 0;
+}
+
+.projekt-quer__buehne {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+}
+
+.projekt-quer__band {
+  display: flex;
+  gap: calc(var(--raster-spaltenabstand) * 2);
+  padding-right: var(--wuerfel-rasteroffset);
+  padding-left: var(--raster-spalten-offset);
+  align-items: center;
+  will-change: transform;
+}
+
+.projekt-quer__band > * {
+  flex: none;
+}
+
+.projekt-quer__band .projekt-text {
+  width: var(--raster-spaltengruppe);
+}
+
+.projekt-quer__band img {
+  display: block;
+  width: auto;
+  height: min(62vh, 40vw);
+}
+
+.projektseite .layout-raster {
+  position: absolute;
+  height: 100%;
+  min-height: 100%;
+}
+
+/* ---------- Schmale Bildschirme ---------- */
+
+@media (max-width: 56rem) {
+  .projekt-kopf {
+    right: 0;
+    width: auto;
+    margin: 0;
+    padding: 1rem 1rem 0;
+    grid-template-columns: 1fr auto;
+  }
+
+  .projekt-kopf__meta {
+    margin-top: 1.2rem;
+  }
+
+  .projekt-navigation {
+    grid-column: 2;
+    grid-row: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: right;
+  }
+
+  .projekt-liste {
+    display: none;
+  }
+
+  .projekt-abschnitt {
+    padding-inline: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 4rem;
+  }
+
+  .projekt-abschnitt:first-child {
+    padding-top: 9rem;
+  }
+
+  .projekt-einstieg,
+  .projekt-bild--links,
+  .projekt-bild--rechts,
+  .projekt-bild--breit,
+  .projekt-text {
+    grid-column: 1;
+  }
+
+  .projekt-bild--klein,
+  .projekt-bild--klein-links {
+    grid-column: 1;
+    width: 45%;
+  }
+
+  .projekt-bild--rechts {
+    width: 80%;
+    justify-self: end;
+  }
+
+  .projekt-bild--links {
+    width: 80%;
+  }
+
+  /* Seitwärts-Abschnitt wird untereinander gestapelt */
+  .projekt-quer__buehne {
+    position: static;
+    height: auto;
+    padding: 4rem 1rem;
+  }
+
+  .projekt-quer__band {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0;
+    align-items: stretch;
+    transform: none !important;
+  }
+
+  .projekt-quer__band .projekt-text {
+    width: auto;
+  }
+
+  .projekt-quer__band img {
+    width: 100%;
+    height: auto;
+  }
+}

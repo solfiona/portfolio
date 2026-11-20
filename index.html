@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <title>Würfel</title>
+    <meta name="description" content="FIONA SOLAND" />
+</head>
+
+<body>
+    <main class="wuerfel-buehne">
+        <ul class="wuerfel-raster">
+        <li class="wuerfel-szene">
+                <div class="wuerfel" role="link" tabindex="0" data-projektseite="projekt-chum-au-mit.html" aria-label="Projekt Chum au mit! öffnen">
+                    <div class="wuerfel__drehung">
+                        <div class="wuerfel__seite wuerfel__seite--vorn"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-motiv-1.jpg" alt="" width="343" height="343" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--rechts"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-motiv-2.jpg" alt="" width="343" height="343" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--hinten"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-motiv-3.jpg" alt="" width="343" height="343" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--links"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-motiv-4.jpg" alt="" width="343" height="343" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--oben"><video class="wuerfel__video" autoplay muted loop playsinline poster="../assets/bilder/wuerfel-motiv-5-poster.jpg" width="343" height="343" draggable="false" aria-hidden="true"><source src="../assets/videos/wuerfel-motiv-5.mp4" type="video/mp4" /></video></div>
+                        <div class="wuerfel__seite wuerfel__seite--unten"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-motiv-6.jpg" alt="" width="343" height="343" loading="lazy" draggable="false" /></div>
+                    </div>
+                </div>
+            </li>
+            <li class="wuerfel-szene">
+                <div class="wuerfel" role="link" tabindex="0" data-projektseite="projekt-der-london-kassenzettel.html" aria-label="Projekt Der London Kassenzettel öffnen">
+                    <div class="wuerfel__drehung">
+                        <div class="wuerfel__seite wuerfel__seite--vorn"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-1.jpg" alt="" width="329" height="329" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--rechts"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-2.jpg" alt="" width="329" height="329" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--hinten"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-3.jpg" alt="" width="329" height="329" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--links"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-4.jpg" alt="" width="329" height="329" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--oben wuerfel__seite--leer"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-5.png" alt="" width="574" height="590" loading="lazy" draggable="false" /></div>
+                        <div class="wuerfel__seite wuerfel__seite--unten"><img class="wuerfel__bild" src="../assets/bilder/wuerfel-neu-motiv-6.jpg" alt="" width="329" height="329" loading="lazy" draggable="false" /></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </main>
+    <div class="layout-raster" aria-hidden="true">
+        <div class="layout-raster__spalten"></div>
+        <div class="layout-raster__reihen"></div>
+    </div>
+    <div class="bild-ansicht" role="dialog" aria-modal="true" aria-label="Vergrösserte Würfelseite" hidden>
+        <button class="bild-ansicht__schliessen" type="button" aria-label="Ansicht schliessen">×</button>
+        <div class="bild-ansicht__inhalt"></div>
+    </div>
+    <script src="../js/main.js" defer></script>
+</body>
+
+</html>
